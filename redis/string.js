@@ -110,6 +110,11 @@ const otherOperations = async () =>{
 
 }
 
+const getType = async ({key}) => {
+  const type = await redis.type(key);
+  console.log(`Type of ${key} is : `, type);
+}
+
 // OPERATIONS --->
 
 // INSERT
@@ -163,3 +168,7 @@ getMultipleKeys(['string:user:6', 'string:user:7', 'string:user:8']);
 
 // other operations
 otherOperations();
+
+
+// check type
+getType({key : "string:user:6"});
