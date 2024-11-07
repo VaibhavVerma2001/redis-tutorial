@@ -16,7 +16,7 @@ const insert = async ({ key, value }) => {
 
 const getByKey = async ({ key }) => {
   const res = await redis.get(key);
-  // console.log("Response of get by key : ", res); // returns ok or null
+  // console.log("Response of get by key : ", res); // returns value or null
   if (res) {
     console.log(`Value for key ${key} is ${res}`);
   } else {
@@ -77,7 +77,7 @@ const multipleSet = async ({ data }) => {
 const getMultipleKeys = async (keysArray) => {
   try {
     const values = await redis.mget(...keysArray); // Spread the array
-    console.log('Retrieved values:', values);
+    console.log('Retrieved values:', values); // Retrieved values: [ 'value1', 'value2', 'value3' ]
   } catch (error) {
     console.error('Error getting multiple keys:', error);
   }
@@ -154,9 +154,9 @@ timeToLive({ key: "string:user:5", value: "Expiry value" });
 // };
 
 const data = {
-  'string:user:6' : 'value1',
-  'string:user:7': 'value2',
-  'string:user:8': 'value3'
+  'string:user:10' : 'value1',
+  'string:user:11': 'value2',
+  'string:user:12': 'value3'
 };
 
 multipleSet({data});
